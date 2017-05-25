@@ -1,0 +1,41 @@
+server:
+  adminMinThreads: 1
+  adminMaxThreads: 10
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+  requestLog:
+    appenders:
+      - type: console
+        timeZone: Asia/Shanghai
+      - type: file
+        currentLogFilename: ./logs/jianrlv-access.log
+        archivedLogFilenamePattern: ./logs/jianrlv-access-%d.log.gz
+        archivedFileCount: 15
+        timeZone: Asia/Shanghai
+
+logging:
+  level: INFO
+  appenders:
+    - type: console
+      timeZone: Asia/Shanghai
+    - type: file
+      threshold: DEBUG
+      currentLogFilename: ./logs/jianrlv.log
+      archivedLogFilenamePattern: ./logs/jianrlv-%d.log.gz
+      archivedFileCount: 15
+      timeZone: Asia/Shanghai
+
+###### jdbc ########
+jdbc:
+  url: jdbc:mysql://10.94.97.32:3306/jianrlv?autoReconnect=true&useUnicode=true&characterEncoding=UTF8
+  driver: com.mysql.jdbc.Driver
+  username: root
+  password: root
+  acquireIncrement: 5
+  initialPoolSize: 10
+  minPoolSize: 10
+  maxPoolSize: 60
