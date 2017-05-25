@@ -23,5 +23,6 @@ public class AuthFilter implements ContainerRequestFilter {
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
-    LOGGER.info("REQUEST: {}" ,mapper.writeValueAsString(requestContext.getHeaders())); }
+    LOGGER.info("REQUEST: {}" ,mapper.writeValueAsString(requestContext.getHeaders()));
+  }
 }

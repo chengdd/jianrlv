@@ -32,6 +32,7 @@ public class MySqlHealthCheck extends HealthCheck {
       rs = stmt.executeQuery("select 1 as rs");
       while (rs.next()) {
         if (rs.getInt("rs") == 1) {
+          LOGGER.info("MYSQL: connection is ok !");
           return Result.healthy();
         } else {
           return Result.unhealthy("");

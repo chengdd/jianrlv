@@ -1,3 +1,4 @@
+######## server config ########
 server:
   adminMinThreads: 1
   adminMaxThreads: 10
@@ -18,7 +19,7 @@ server:
         timeZone: Asia/Shanghai
 
 logging:
-  level: INFO
+  level: DEBUG
   appenders:
     - type: console
       timeZone: Asia/Shanghai

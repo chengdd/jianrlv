@@ -21,15 +21,18 @@ public class MybatisConfiguration {
 
   public SqlSessionFactory getSqlSessionFactory() throws Exception {
     ComboPooledDataSource dataSource = new ComboPooledDataSource();
+    dataSource.setUser(conf.getJdbc().getUsername());
+    dataSource.setPassword(conf.getJdbc().getPassword());
+    dataSource.setJdbcUrl(conf.getJdbc().getUrl());
     dataSource.setDriverClass(conf.getJdbc().getDriver());
     dataSource.setInitialPoolSize(conf.getJdbc().getInitialPoolSize());
     dataSource.setAcquireIncrement(conf.getJdbc().getAcquireIncrement());
 
     Environment env = new Environment("default", new JdbcTransactionFactory(), dataSource);
-
     Configuration mc = new Configuration();
     mc.setEnvironment(env);
-
+    mc.addMappers("dd.infra.persistence.mybatis.mapper");
+    mc.setMapUnderscoreToCamelCase(true);
     return new DefaultSqlSessionFactory(mc);
   }
 
